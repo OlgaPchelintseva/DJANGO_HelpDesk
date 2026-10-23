@@ -1,0 +1,23 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+    <h1>Отчёт по загрузке данных</h1>
+
+    <div style="margin-bottom: 20px;">
+        <p><strong>Добавлено строк:</strong> {{ created_count }}</p>
+        <p><strong>Обновлено строк:</strong> {{ updated_count }}</p>
+        <p><strong>Пропущено строк:</strong> {{ skipped_count }}</p>
+    </div>
+
+    {% if errors %}
+        <h3>Причины пропуска строк:</h3>
+        <ul>
+            {% for error in errors %}
+                <li style="margin: 5px 0;">{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Ошибок не обнаружено.</p>
+    {% endif %}
+
+    <p><a href="{% url 'admin:helpdesk_ticket_changelist' %}" class="button">Вернуться к списку заявок</a></p>
+{% endblock %}
